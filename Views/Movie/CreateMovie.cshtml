@@ -1,0 +1,198 @@
+﻿@{
+    ViewBag.Title = "CreateMovie";
+    Layout = "~/Views/Shared/_MasterLayoutPage.cshtml";
+}
+@model AssgnModels.MovieDetails.MovieDetailsModel
+
+<div id="divMovie" class="container" style="padding-top:30px;">
+    <h1>Create Movies</h1>
+    <br />
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label>Movie Producer Name</label>
+                <select id="ddlMovieProducer" class="form-control select2" data-placeholder="Select Producers" style="width: 100%;">
+                    @foreach (var Producer in Model.AllProducerList)
+                    {
+                        <option value="@Producer.ProducerId">@Producer.ProducerName</option>
+                    }
+                </select>
+                <div>
+                    <a href=" #" data-toggle="modal" data-target="#modalProducer">Add Producer</a>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-group">
+                <label>Movie Name</label>
+                <input id="txtMovieName" class="form-control" type="text" name="fname" placeholder="Enter Movie Name...">
+            </div>
+            
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-group">
+                <label>Movie Release</label>
+                <input id="txtMovieRelease" class="form-control" type="text" name="fname" placeholder="Enter Movie Release Date..." data-inputmask="'alias': 'dd/mm/yyyy'" data-mask>
+            </div>
+            
+        </div>
+
+        
+        
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label>Movie Plot</label>
+                <textarea id="txtMoviePlot" class="form-control" rows="3" >
+                </textarea>
+            </div>
+        </div>
+
+        <div class="col-md-5">
+            <div class="form-group">
+                <label>Movie Actors</label>
+                <select id="ddlMovieActors" class="form-control select2" multiple="multiple" data-placeholder="Select Actors" style="width: 100%;">
+                    @foreach (var Actor in Model.AllActorList)
+                    {
+                        <option value="@Actor.ActorId">@Actor.ActorName</option>
+                    }
+                </select>
+                <div>
+                    <a href=" #" data-toggle="modal" data-target="#modalActor">Add Actor</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="form-group">
+                <label>Movie Image</label>
+                <input id="fleMoviePoster" type="file" >
+            </div>
+        </div>
+
+    </div>
+
+    <div style="text-align:center;" class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <button class="btn btn-success btn-md" id="btnCreateMovie">Create Movie</button>
+                <a href="@Url.Action("Index","Home")" class="btn btn-warning btn-md">Back To Home</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+<div class="modal fade" id="modalActor" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog modal-sm" style="width:60%;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close pull-right" data-dismiss="modal">
+                    &times;
+                </button>
+                <h4>
+                    Add New Actor
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <input id="txtModalActorName" class="form-control" type="text" name="fname" placeholder="Enter Actor Name...">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <select id="ddlModalActorGender" class="form-control" style="width: 100%;">
+                                <option selected disabled>Select Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <input id="txtModalActorDob" class="form-control" type="text" name="fname" placeholder="Enter Dob..." data-inputmask="'alias': 'dd/mm/yyyy'" data-mask>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <input id="txtModalActorBio" class="form-control" type="text" name="fname" placeholder="Enter Bio...">
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div style="text-align:center;">
+                    <button class="btn btn-success btn-md" id="btnModalAddActor">ADD</button>
+                </div>
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn btn-danger">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="modalProducer" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog modal-sm" style="width:60%;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close pull-right" data-dismiss="modal">
+                    &times;
+                </button>
+                <h4>
+                    Add New Producer
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <input id="txtModalPoducerName" class="form-control" type="text" name="fname" placeholder="Enter Producer Name...">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <select id="ddlModalProducerGender" class="form-control" style="width: 100%;">
+                                <option selected disabled>Select Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <input id="txtModalProducerDob" class="form-control" type="text" name="fname" placeholder="Enter Dob..." data-inputmask="'alias': 'dd/mm/yyyy'" data-mask>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <input id="txtModalProducerBio" class="form-control" type="text" name="fname" placeholder="Enter Bio...">
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div style="text-align:center;">
+                    <button class="btn btn-success btn-md" id="btnModalAddProducer">ADD</button>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn btn-danger">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section CustomScripts {
+    <script src="@Url.Content("~/Content/MyScripts/")MovieCreationUpdationScript.js?v=@((Guid.NewGuid()).ToString().Replace("-", string.Empty))"></script>
+}

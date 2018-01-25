@@ -1,0 +1,36 @@
+﻿@{
+    ViewBag.Title = "MoviesList";
+    Layout = "~/Views/Shared/_MasterLayoutPage.cshtml";
+}
+@model List<AssgnModels.MovieModels.MovieModel>
+
+<div class="container">
+    <div class="row" style="padding-top:15px;">
+        <h2 style="color:orange;">MOVIES LIST
+            <a href="@Url.Action("Index","Home")" class="btn btn-info pull-right">Back To Home</a>
+        </h2>
+        
+        <br />
+        @foreach (var MovieItem in Model)
+        {
+            <div class="col-md-3" style="padding-top:20px;">
+                <div style="text-align:center;" class="form-group">
+                    <a href="@Url.Action("MovieDetails", "Movie", new { MovieId = @MovieItem.MovieId })"><img src="@Url.Content("~/Content/images/")@MovieItem.MovieImagePath" alt="@MovieItem.MovieImagePath" height="350" width="260"></a>
+                    <a href=""><label style="padding-top:5px;">@MovieItem.MovieName</label></a><br />
+                    <div>
+                        <div class="col-md-6">
+                            <a href="@Url.Action("MovieDetails", "Movie", new { MovieId = @MovieItem.MovieId })" class="btn btn-info" style="width:100%;">View</a>
+                        </div>
+                        <div class="col-md-6">
+                            <a href="@Url.Action("MovieEdit", "Movie", new { MovieId = @MovieItem.MovieId })" class="btn btn-warning" style="width:100%;">Edit</a>
+                        </div>
+
+
+                        @*<button style="width:100%;" type="button" class="btn btn-info">View</button>*@
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>

@@ -1,0 +1,35 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MasterLayoutPage.cshtml";
+}
+<div style="padding-top:20px; text-align:center;">
+    <div  class="jumbotron">
+        <h1>Assignment</h1>
+
+    </div>
+</div>
+
+
+<div class="container body-content">
+    <div style="padding-top:50px;" class="row">
+        <div class="col-md-8">
+            <input class="form-control" type="text" id="txtMovieName" name="fname" placeholder="Enter Movie Name...">
+            <p hidden id="movieId"></p>
+            <div class="pull-right">
+                <a href="@Url.Action("CreateMovie","Movie")">Add New Movie</a>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <a class="btn btn-warning btn-md" id="btnSearchMovieId">Search This Movie</a>
+        </div>
+        <div class="col-md-2">
+            <a href="@Url.Action("MoviesList", "Movie")" class="btn btn-info btn-md" id="btnSearchMovieAll">Search All Movies</a>
+        </div>
+    </div>
+</div>
+
+@section CustomScripts {
+    <script src="@Url.Content("~/Content/MyScripts/")HomeScript.js?v=@((Guid.NewGuid()).ToString().Replace("-", string.Empty))"></script>
+}
+
+

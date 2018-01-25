@@ -1,0 +1,118 @@
+﻿@{
+    ViewBag.Title = "MovieEdit";
+    Layout = "~/Views/Shared/_MasterLayoutPage.cshtml";
+}
+
+@model AssgnModels.MovieDetails.MovieDetailsModel
+
+<div class="container">
+    <h1>@Model.MovieName.ToUpper() MOVIE DETAILS</h1>
+    <br />
+    <div class="row" style="padding-top:15px;">
+        <div class="col-md-3">
+            <div style="text-align:center;" class="form-group">
+                <a href="#/"><img id="MovieImage" src="@Url.Content("~/Content/images/")@Model.MovieImagePath" alt="@Model.MovieImagePath" height="350" width="260"></a>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>MOVIE NAME</label>
+                    <input id="txtMovieName" class="form-control" type="text" name="@Model.MovieId" value="@Model.MovieName">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>PRODUCER NAME</label>
+                    <select id="ddlMovieProducer" class="form-control select2" data-placeholder="Select Producers" style="width: 100%;">
+                        @foreach (var Producer in @Model.AllProducerList)
+                        {
+                            if (Model.ProducerId == @Producer.ProducerId)
+                            {
+                                <option selected value="@Producer.ProducerId">@Producer.ProducerName</option>
+                            }
+                            else
+                            {
+                                <option value="@Producer.ProducerId">@Producer.ProducerName</option>
+                            }
+
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>MOVIE RELEASE DATE</label>
+                    <input id="txtMovieReleaseDate" class="form-control" type="text" name="fname" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask value="@Model.MovieRelease">
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>MOVIE ACTORS</label>
+                    <select id="ddlMovieActors" class="form-control select2" multiple="multiple" data-placeholder="Select Actors" style="width: 100%;">
+                        @if (Model.MovieActorsList.Count != 0)
+                        { 
+                            foreach (var Actor in Model.AllActorList)
+                            {
+
+
+                                foreach (var MovieActor in Model.MovieActorsList)
+                                {
+                                    if (MovieActor.MovieActorId == Actor.ActorId)
+                                    {
+                                        <option selected value="@Actor.ActorId">@Actor.ActorName</option>
+                                        break;
+                                    }
+                                    else if (Model.MovieActorsList.LastOrDefault().Equals(MovieActor))
+                                    {
+                                        <option value="@Actor.ActorId">@Actor.ActorName</option>
+                                    }
+                                    else
+                                    {
+                                        continue;
+                                    }
+                                }
+
+                            }
+                        }
+                        else
+                        {
+                            foreach (var Actors in Model.AllActorList)
+                            {
+                                <option value="@Actors.ActorId">@Actors.ActorName</option>
+                            }
+                        }
+                        
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-md-5">
+                <div class="form-group">
+                    <label>MOVIE PLOT</label>
+                    <textarea id="txtMoviePlot" class="form-control" rows="3">@Model.MoviePlot</textarea>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>Movie Image</label>
+                    <input id="fleMoviePoster" type="file">
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    </div>
+    <div style="text-align:center;">
+        <button id="btnMovieUpdate" type="button" class="btn btn-warning">UPDATE</button>
+        <a href="@Url.Action("MoviesList", "Movie")" class="btn btn-info">BACK TO LIST</a>
+        @*<button type="button" class="btn btn-info">BACK TO LIST</button>*@
+    </div>
+
+
+@section CustomScripts {
+    <script src="@Url.Content("~/Content/MyScripts/")MovieCreationUpdationScript.js?v=@((Guid.NewGuid()).ToString().Replace("-", string.Empty))"></script>
+}

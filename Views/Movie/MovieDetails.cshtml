@@ -1,0 +1,76 @@
+﻿@{
+    ViewBag.Title = "MovieDetails";
+    Layout = "~/Views/Shared/_MasterLayoutPage.cshtml";
+}
+@model AssgnModels.MovieDetails.MovieDetailsModel
+
+<div class="container">
+    <h1>@Model.MovieName.ToUpper() MOVIE DETAILS</h1>
+    <br />
+    <div class="row" style="padding-top:15px;">
+        <div class="col-md-3">
+            <div style="text-align:center;" class="form-group">
+                <a href=""><img src="@Url.Content("~/Content/images/")@Model.MovieImagePath" alt="" height="350" width="260"></a>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>MOVIE NAME</label>
+                    <input disabled id="txtMovieName" class="form-control" type="text" name="fname" value="@Model.MovieName">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>PRODUCER NAME</label>
+                    <input disabled id="txtMoviePoducerName" class="form-control" type="text" name="fname" value="@Model.ProducerName">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>MOVIE RELEASE DATE</label>
+                    <input disabled id="txtMovieReleaseDate" class="form-control" type="text" name="fname" value="@Model.MovieRelease">
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label>MOVIE PLOT</label>
+                    <textarea disabled id="txtMoviePlot" class="form-control" rows="3" >@Model.MoviePlot</textarea>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label>MOVIE ACTORS</label>
+                    <table border="1">
+                        <thead>
+                            <tr>
+                                <th width="10%" style="text-align:center;">Sr No</th>
+                                <th width="100%" style="text-align:center;">Actor name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{int Count = 1;}
+                            @foreach (var MovieActor in Model.MovieActorsList)
+                            {
+                                <tr>
+                                    <td style="text-align:center; color:brown;">@Count</td>
+                                    <td style="text-align:center; color:brown;">@MovieActor.MovieActorName</td>
+                                </tr>
+                                Count++;
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div style="text-align:center;">
+        <a href="@Url.Action("MoviesList", "Movie")" class="btn btn-info">BACK TO LIST</a>
+        <a href="@Url.Action("Index","Home")" class="btn btn-warning">Back To Home</a>
+        @*<button type="button" class="btn btn-info">BACK TO LIST</button>*@
+    </div>
+    
+</div>
