@@ -264,7 +264,7 @@
             content: function () {
                 var SelfContent = this;
                 return $.ajax({
-                    url: rootUrl + '/Movie/CreateProducer',
+                    url: '/Movie/CreateProducer',
                     method: 'post',
                     dataType: 'json',
                     contentType: "application/json; charset=utf-8",
@@ -356,7 +356,7 @@
             content: function () {
                 var SelfContent = this;
                 return $.ajax({
-                    url: rootUrl + '/Movie/CreateActor',
+                    url: '/Movie/CreateActor',
                     method: 'post',
                     dataType: 'json',
                     contentType: "application/json; charset=utf-8",
@@ -449,7 +449,7 @@
             content: function () {
                 var SelfContent = this;
                 return $.ajax({
-                    url: rootUrl + '/Movie/CreateMovieInsert',
+                    url: '/Movie/CreateMovieInsert',
                     type: "POST",
                     data: MyFormData,
                     processData: false,
@@ -538,7 +538,7 @@
             content: function () {
                 var SelfContent = this;
                 return $.ajax({
-                    url: rootUrl + '/Movie/UpdtaeMovie',
+                    url: '/Movie/UpdtaeMovie',
                     type: "POST",
                     data: MyFormData,
                     processData: false,
@@ -623,7 +623,7 @@
 
     function GetProducer() {
         $.ajax({
-            url: rootUrl + '/Movie/GetProducer',
+            url: '/Movie/GetProducer',
             method: 'post',
             dataType: 'json',
             success: function (data) {
@@ -638,7 +638,7 @@
 
     function GetActors() {
         $.ajax({
-            url: rootUrl + '/Movie/GetActor',
+            url: '/Movie/GetActor',
             method: 'post',
             dataType: 'json',
             success: function (data) {
