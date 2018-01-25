@@ -6,7 +6,7 @@
 
     function MoviesNames() {
         $.ajax({
-            url: '/Home/MovieNameList',
+            url: rootUrl + '/Home/MovieNameList',
             method: 'post',
             dataType: 'json',
             success: function (data) {
