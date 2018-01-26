@@ -175,8 +175,7 @@
         MyFormData.append("MovieActors", MovieModel.MovieActors);
         MyFormData.append("MovieImageFile", File[0]);
 
-alert(MyFormData.MovieRelease);
-        return false;
+
 
         MovieInsert(MyFormData)
     });
@@ -445,6 +444,8 @@ alert(MyFormData.MovieRelease);
     }
 
     function MovieInsert(MyFormData) {
+
+        
 
         $.confirm({
             content: function () {
