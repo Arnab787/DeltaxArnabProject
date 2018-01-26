@@ -175,7 +175,7 @@
         MyFormData.append("MovieActors", MovieModel.MovieActors);
         MyFormData.append("MovieImageFile", File[0]);
 
-alert(MovieModel.MovieRelease);
+alert(MyFormData);
         return false;
 
         MovieInsert(MyFormData)
